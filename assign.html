@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration Form</title>
+        <style>
+            body{
+                font-size: xx-small;
+                background-color: bisque;
+            }
+            form{
+                margin: auto;
+                width: 250px;
+                padding: 20px;
+                border: 1px solid;
+                border-radius: 15px;
+                text-align: left;
+                align-content: center;
+                background-color: white;
+            }
+            input{
+                height: 40px;
+                width: 250px;
+                border-style: none;
+                border-radius: 16px;
+                background-color: aliceblue;        
+            }
+
+            #submit{
+                width: 250px;
+                height: 40px;
+                border-radius: 20px;
+                border-style: none;
+                margin-top: 20px;
+                background-color: #00bd78;
+                color: black;
+                cursor: pointer;
+            }
+        </style>
+        <script>
+            let emailInput = document.getElementById('email')
+            let passwordInput = document.getElementById('password').value
+            let submitButton = document.getElementById('submit')
+
+
+            let passwordForm = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+            let emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+            
+            function validatePassword(password){
+                if (passwordInput.value.length < 8 || !passwordInput.value.match(passwordForm)){
+                    passwordInput.style.backgroundColor = "red";
+                    alert("Password must be at least 8 characters and must contain at least one number and one special character")
+                    return false;
+                }
+                return true;
+            }
+            function validateEmail(emailInput){
+                if (!emailInput.value.match(emailForm)){
+                    emailInput.style.backgroundColor = "red";
+                    alert("Please enter a valid email address");
+                    return false;
+                }
+                return true;
+            }
+            function validateForm(){
+                if (validatePassword() && validateEmail()){
+                    submitButton.disabled = false;
+                }else{
+                    submitButton.disabled = true;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="" method="post">
+            <label for="name"><b>First Name:<br>
+                <input type="text" name="firstname" id="firstname" placeholder="your first name" required>
+            </label><br><br>
+
+            <label for="name">Middle Name:<br>
+                <input type="text" name="middlename" id="middlename" placeholder="your middle name" required>
+            </label><br><br>
+
+            <label for="name">Last Name:<br>
+                <input type="text" name="lastname" id="lastname" placeholder="your last name" required>
+            </label><br><br>
+
+            <label for="">Email Address:<br>
+                <input type="email" name="email" id="email" placeholder="info@example.com" required>
+            </label><br><br>
+
+            <label for="password">Password:</b><br>
+                <input type="password" name="password" id="password" placeholder="minimum of 8 characters" required>
+            </label><br><br>
+
+            <label for="">
+                <button type="submit" id="submit">LOGIN</button>
+            </label><br><br>
+        </form>    
+    </body>
+</html>
